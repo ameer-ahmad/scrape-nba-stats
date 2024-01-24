@@ -14,6 +14,8 @@ def getPlayers():
     for row in rows:
         player = row.find_elements(By.TAG_NAME, "td")
         playerInfo = {}
+        
+        #store player info
         playerInfo['name'] = player[1].text
         playerInfo['image'] = player[1].find_element(By.TAG_NAME, "a").get_attribute('href').split('/')[-2]
         playerInfo['mpg'] = player[7].text
@@ -35,6 +37,7 @@ driver.get("https://www.nba.com/stats/players/traditional?PerMode=PerGame&dir=A&
 WebDriverWait(driver, 5).until(
     EC.presence_of_element_located((By.CLASS_NAME, "DropDown_select__4pIg9"))
 )
+#view all players
 select_element = driver.find_elements(By.CLASS_NAME, 'DropDown_select__4pIg9')[-1]
 dropdown = Select(select_element)
 dropdown.select_by_value("-1")
@@ -43,6 +46,7 @@ getPlayers()
 
 driver.quit
 
+#convert to json
 json_data = json.dumps(playerStats)
 with open('player_stats.json', 'w') as file:
     file.write(json_data)
