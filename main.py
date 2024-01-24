@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import json
+import os
 
 def getPlayers():
     players_table = driver.find_element(By.CLASS_NAME, "Crom_table__p1iZz")
@@ -40,9 +41,12 @@ dropdown.select_by_value("-1")
 
 getPlayers()
 
+driver.quit
+
 json_data = json.dumps(playerStats)
 with open('player_stats.json', 'w') as file:
     file.write(json_data)
-    
 
-driver.quit
+os.system('git add .')
+os.system('git commit -m "Daily update"')
+os.system('git push origin main')
