@@ -49,4 +49,4 @@ with open('player_stats.json', 'w') as file:
 
 os.system('git add .')
 os.system('git commit -m "Daily update"')
-os.system('git push origin main')
+os.system('git push main')
