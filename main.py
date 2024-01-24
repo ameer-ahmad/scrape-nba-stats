@@ -47,6 +47,7 @@ json_data = json.dumps(playerStats)
 with open('player_stats.json', 'w') as file:
     file.write(json_data)
 
+# Upload to github
 os.system('git add .')
 os.system('git commit -m "Daily update"')
 os.system('git push origin main')
